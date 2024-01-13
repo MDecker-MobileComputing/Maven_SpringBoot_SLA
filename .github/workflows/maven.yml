@@ -1,0 +1,27 @@
+name: FatJar bauen
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  job-fatjar:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Git-Repo auschecken
+      uses: actions/checkout@v4
+    - name: JDK 21 einrichten
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+    - name: FatJar-Datei mit Maven bauen
+      run: ./mvnw --batch-mode clean package
+    - name: FatJar-Datei veröffentlichen
+      uses: actions/upload-artifact@v3
+      with:
+        name: SlaRechner-FatJar
+        path: target/sla-*-jar-with-dependencies.jar
+        if-no-files-found: error # Default-Wert ist (nur) "warn"; es gibt auch noch "ignore"
+
