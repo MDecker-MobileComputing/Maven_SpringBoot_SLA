@@ -1,7 +1,5 @@
 package de.eldecker.dhbw.spring.sla;
 
-import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_JAHR;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -9,6 +7,7 @@ import org.junit.jupiter.api.function.Executable;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +26,17 @@ class SLARechnerTest {
     @Autowired
     private SLARechner _cut;
 
+           
+    @ParameterizedTest
+    @CsvSource({ "100.0,0", 
+                 " 99.3,220752",
+                 "  0.0,31536000"})                   
+    void prozentZuSekunden(double prozentwert, int ausfallSekundenProJahr) throws SLAException {
+
+        int ergebnisSekunden = _cut.slaProzentZuSekunden(prozentwert);
+        assertEquals( ausfallSekundenProJahr, ergebnisSekunden );
+    }
+
     
     @ParameterizedTest
     @ValueSource(doubles = { -1.0, 101.0 })
@@ -36,28 +46,4 @@ class SLARechnerTest {
         assertThrows(SLAException.class, executable );
     }
 
-    
-    @Test
-    void slaZuSekunden_0Prozent() throws SLAException {
-
-        int ergebnisSekunden = _cut.slaProzentZuSekunden(0.0);
-        assertEquals( SEKUNDEN_PRO_JAHR, ergebnisSekunden );
-    }
-
-    
-    @Test
-    void slaZuSekunden_100Prozent() throws SLAException {
-
-        int ergebnisSekunden = _cut.slaProzentZuSekunden(100.0);
-        assertEquals( 0, ergebnisSekunden );
-    }
-
-    
-    @Test
-    void slaZuSekunden_993() throws SLAException {
-        
-        int ergebnisSekunden = _cut.slaProzentZuSekunden(99.3);
-        assertEquals( 220752, ergebnisSekunden);
-    }
-    
 }

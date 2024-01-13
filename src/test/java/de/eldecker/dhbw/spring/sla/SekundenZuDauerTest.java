@@ -38,8 +38,7 @@ public class SekundenZuDauerTest {
     }, delimiter = ';')
     void dauerVonSekunden(int sekunden, String erwarteterString) throws SLAException {
         
-        final Dauer ergebnisDauer = sekundenZuDauer(sekunden);
-                 
+        final Dauer ergebnisDauer = sekundenZuDauer(sekunden);                 
         assertEquals( erwarteterString, ergebnisDauer.toString() );        
     }
     
