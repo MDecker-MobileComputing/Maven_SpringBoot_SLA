@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SLARechner {
 
+    /** Sekunden pro Jahr (kein Schaltjahr, also 365 Tage) */
     public static final int SEKUNDEN_PRO_JAHR   = 60 * 60 * 24 * 365;
 
     public static final int SEKUNDEN_PRO_WOCHE  = 60 * 60 * 24 * 7;
@@ -21,15 +22,16 @@ public class SLARechner {
 
 
     /**
-     * Rechnet SLA-Prozentwert in Sekunden pro Jahr um.
+     * Rechnet SLA-Prozentwert in erlaubte Ausfallzeit pro Jahr in Sekunden um.
      *
      * @param slaProzentWert Prozentwert für die Verfügbarkeit, z.B. 99,99%;
      *                       muss zwischen 0.0 und 100.0 liegen
      *
-     * @return Anzahl Sekunden pro Jahr
+     * @return Anzahl Sekunden pro Jahr, die die Applikation ausfallen darf,
+     *         ohne dass der SLA-Wert unterschritten wird
      *
-     * @throws SLAException wenn der übergebene Wert nicht zwischen 0.0 und 100.0
-     *                      liegt
+     * @throws SLAException wenn der übergebene SLA-Wert nicht zwischen 0.0 und
+     *                      100.0 liegt
      */
     public int slaProzentZuSekunden(double slaProzentWert) throws SLAException {
 
@@ -39,12 +41,15 @@ public class SLARechner {
                                    slaProzentWert);
         }
 
-        return (int) (slaProzentWert * SEKUNDEN_PRO_JAHR / 100.0);
+        final double ausfallzeitErlaubtProzent = 100.0 - slaProzentWert;
+
+        return (int) (ausfallzeitErlaubtProzent * SEKUNDEN_PRO_JAHR / 100.0);
     }
 
+
     /**
-     * Rechnet Anzahl Sekunden pro Jahr in Zeiten um (also zuerst volle Wochen,
-     * dann vom Rest volle Tage, usw.).
+     * Rechnet Anzahl Sekunden pro Jahr in verschiedene Zeitgranularitäten um:
+     * zuerst volle Wochen, dann volle Tage, Stunden, Minuten und Sekunden.
      *
      * @param sekundenImJahr Anzahl Sekunden pro Jahr
      *
