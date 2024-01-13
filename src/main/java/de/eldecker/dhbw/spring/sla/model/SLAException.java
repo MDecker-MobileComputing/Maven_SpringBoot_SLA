@@ -16,4 +16,5 @@ public class SLAException extends Exception {
 
         super(beschreibung);
     }
+    
 }

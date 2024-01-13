@@ -5,10 +5,10 @@ package de.eldecker.dhbw.spring.sla.logik;
  * Klasse enthält Konstanten mit Anzahl von Sekunden für verschiedene Zeiteinheiten,
  * z.B. Sekunden pro Jahr.
  */
-public class SekundenProZeiteinheit {
+public class SekundenProZeiteinheitKonstanten {
     
     /** Dummy-Konstruktor um zu verhindern, dass diese Klasse instanziiert wird. */
-    private SekundenProZeiteinheit() {}        
+    private SekundenProZeiteinheitKonstanten() {}        
     
 
     /** Sekunden pro Jahr (kein Schaltjahr, also 365 Tage): 31.536.000 */

@@ -1,10 +1,10 @@
 package de.eldecker.dhbw.spring.sla.model;
 
-import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_WOCHE;
-import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_TAG;
-import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_STUNDE;
-import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_MINUTE;
-import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_JAHR;
+import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheitKonstanten.SEKUNDEN_PRO_WOCHE;
+import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheitKonstanten.SEKUNDEN_PRO_TAG;
+import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheitKonstanten.SEKUNDEN_PRO_STUNDE;
+import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheitKonstanten.SEKUNDEN_PRO_MINUTE;
+import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheitKonstanten.SEKUNDEN_PRO_JAHR;
 
 
 /**
@@ -23,6 +23,8 @@ public record Dauer( int wochen,
           
     /**
      * Liefer gut lesbare String-Repräsentation der Dauer zurück.
+     * Die Einheiten sind je nach Wert im Singular oder Plural
+     * (z.B. "1 Tag" oder "3 Tage"). 
      * 
      * @return Zeitdauer, z.B. "2 Wochen, 1 Tag, 3 Stunden, 1 Minute und 33 Sekunden"
      */
@@ -44,7 +46,6 @@ public record Dauer( int wochen,
                               sekunden, einheitSekunden );
     }
     
-    
 
     /**
      * Rechnet Anzahl Sekunden in verschiedene Zeitgranularitäten um:
@@ -56,7 +57,7 @@ public record Dauer( int wochen,
      * @return Unveränderbares Ergebnisobjekt mit Anzahl Wochen, Tage, 
      *         Stunden, Minuten und Sekunden
      *         
-     * @throws SLAException {@code sekunden} für mehr als ein (Standard-Jahr
+     * @throws SLAException {@code sekunden} für mehr als ein (Standard)-Jahr
      */    
     public static Dauer sekundenZuDauer(int sekunden) throws SLAException {
         
@@ -76,7 +77,7 @@ public record Dauer( int wochen,
         final int restSekunden3 = restSekunden2 % SEKUNDEN_PRO_STUNDE;
 
         final int anzahlMinuten = restSekunden3 / SEKUNDEN_PRO_MINUTE;
-        final int restSekunden4 = restSekunden3 % SEKUNDEN_PRO_MINUTE;
+        final int restSekunden4 = restSekunden3 % SEKUNDEN_PRO_MINUTE; // muss immer 0 sein?!?
 
         return new Dauer( anzahlWochen ,
                           anzahlTage,
