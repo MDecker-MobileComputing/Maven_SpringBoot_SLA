@@ -22,6 +22,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: SlaRechner-FatJar
-        path: target/sla-*-jar-with-dependencies.jar
+        path: target/sla-*.jar
         if-no-files-found: error # Default-Wert ist (nur) "warn"; es gibt auch noch "ignore"
 
