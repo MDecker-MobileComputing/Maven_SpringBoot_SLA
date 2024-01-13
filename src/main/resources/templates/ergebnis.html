@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head>
+    <title>SLA-Berechnung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+<body>
+
+    <h1>SLA <span th:text="${slaProzentWert}"></span>%</h1>
+
+    <ul>
+        <li>Maximale Ausfallzeit pro Jahr : <span th:text="${maxAusfallProJahr}" ></span></li>
+        <li>Maximale Ausfallzeit pro Woche: <span th:text="${maxAusfallProWoche}"></span></li>
+        <li>Maximale Ausfallzeit pro Tag  : <span th:text="${maxAusfallProTag}"  ></span></li>
+    </ul>
+
+</body>
+</html>
