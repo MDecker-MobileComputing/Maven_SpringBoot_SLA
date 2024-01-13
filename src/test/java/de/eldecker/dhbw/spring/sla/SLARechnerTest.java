@@ -52,4 +52,12 @@ class SLARechnerTest {
         assertEquals( 0, ergebnisSekunden );
     }
 
+    
+    @Test
+    void slaZuSekunden_993() throws SLAException {
+        
+        int ergebnisSekunden = _cut.slaProzentZuSekunden(99.3);
+        assertEquals( 220752, ergebnisSekunden);
+    }
+    
 }

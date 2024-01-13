@@ -1,7 +1,7 @@
 package de.eldecker.dhbw.spring.sla.logik;
 
 import de.eldecker.dhbw.spring.sla.model.SLAException;
-import de.eldecker.dhbw.spring.sla.model.ZeitenRecord;
+import de.eldecker.dhbw.spring.sla.model.Dauer;
 
 import org.springframework.stereotype.Service;
 
@@ -12,12 +12,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class SLARechner {
 
-    /** Sekunden pro Jahr (kein Schaltjahr, also 365 Tage) */
+    /** Sekunden pro Jahr (kein Schaltjahr, also 365 Tage): 31.536.000 */
     public static final int SEKUNDEN_PRO_JAHR   = 60 * 60 * 24 * 365;
 
+    /** Sekunden pro Woche: 604.800 */
     public static final int SEKUNDEN_PRO_WOCHE  = 60 * 60 * 24 * 7;
+    
+    /** Sekunden pro Tag: 86.400 */
     public static final int SEKUNDEN_PRO_TAG    = 60 * 60 * 24;
+    
+    /** Sekunden pro Stunde: 3600 */ 
     public static final int SEKUNDEN_PRO_STUNDE = 60 * 60;
+    
+    /** Sekunden pro Minute: 60 (klar!) */
     public static final int SEKUNDEN_PRO_MINUTE = 60;
 
 
@@ -56,7 +63,7 @@ public class SLARechner {
      * @return Unveränderbares Ergebnisobjekt mit Anzahl Wochen, Tage, Stunden,
      *         Minuten und Sekunden
      */
-    public ZeitenRecord sekundenZuZeitenProJahr(int sekundenImJahr) {
+    public Dauer sekundenZuZeitenProJahr(int sekundenImJahr) {
 
         final int anzahlWoche = sekundenImJahr / SEKUNDEN_PRO_WOCHE;
         int restSekunden      = sekundenImJahr % SEKUNDEN_PRO_WOCHE;
@@ -70,7 +77,7 @@ public class SLARechner {
         final int anzahlMinuten = restSekunden / SEKUNDEN_PRO_MINUTE;
         restSekunden            = restSekunden % SEKUNDEN_PRO_MINUTE;
 
-        return new ZeitenRecord( anzahlWoche,
+        return new Dauer( anzahlWoche,
                                  anzahlTage,
                                  anzahlStunden,
                                  anzahlMinuten,
