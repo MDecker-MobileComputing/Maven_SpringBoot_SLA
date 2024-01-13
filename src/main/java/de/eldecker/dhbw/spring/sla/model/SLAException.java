@@ -4,15 +4,16 @@ package de.eldecker.dhbw.spring.sla.model;
 /**
  * Exception-Klasse für Fehler bei SLA-Berechnungen.
  */
+@SuppressWarnings("serial")
 public class SLAException extends Exception {
 
     /**
-     * Erzeugt eine neue SLAException mit der übergebenen Nachricht.
+     * Erzeugt eine neue SLAException mit der übergebenen Beschreibung.
      *
-     * @param nachricht Nachricht, die den Fehler beschreibt.
+     * @param beschreibung Beschreibung, was genau schief genangen ist.
      */
-    public SLAException(String nachricht) {
+    public SLAException(String beschreibung) {
 
-        super(nachricht);
+        super(beschreibung);
     }
 }

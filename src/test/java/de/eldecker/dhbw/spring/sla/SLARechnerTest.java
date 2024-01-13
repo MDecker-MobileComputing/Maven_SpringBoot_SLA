@@ -1,6 +1,6 @@
 package de.eldecker.dhbw.spring.sla;
 
-import static de.eldecker.dhbw.spring.sla.logik.SLARechner.SEKUNDEN_PRO_JAHR;
+import static de.eldecker.dhbw.spring.sla.logik.SekundenProZeiteinheit.SEKUNDEN_PRO_JAHR;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
