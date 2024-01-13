@@ -56,25 +56,25 @@ public class SLARechner {
      * @return Unveränderbares Ergebnisobjekt mit Anzahl Wochen, Tage, Stunden,
      *         Minuten und Sekunden
      */
-    public ZeitenRecord sekundenZuZeiten(int sekundenImJahr) {
+    public ZeitenRecord sekundenZuZeitenProJahr(int sekundenImJahr) {
 
         final int anzahlWoche = sekundenImJahr / SEKUNDEN_PRO_WOCHE;
-        int restSekunden = sekundenImJahr % SEKUNDEN_PRO_WOCHE;
+        int restSekunden      = sekundenImJahr % SEKUNDEN_PRO_WOCHE;
 
         final int anzahlTage = restSekunden / SEKUNDEN_PRO_TAG;
-        restSekunden = restSekunden % SEKUNDEN_PRO_TAG;
+        restSekunden         = restSekunden % SEKUNDEN_PRO_TAG;
 
         final int anzahlStunden = restSekunden / SEKUNDEN_PRO_STUNDE;
-        restSekunden = restSekunden % SEKUNDEN_PRO_STUNDE;
+        restSekunden            = restSekunden % SEKUNDEN_PRO_STUNDE;
 
         final int anzahlMinuten = restSekunden / SEKUNDEN_PRO_MINUTE;
-        restSekunden = restSekunden % SEKUNDEN_PRO_MINUTE;
+        restSekunden            = restSekunden % SEKUNDEN_PRO_MINUTE;
 
         return new ZeitenRecord( anzahlWoche,
                                  anzahlTage,
                                  anzahlStunden,
                                  anzahlMinuten,
-                                 restSekunden );
+                                 restSekunden  );
     }
 
 }
