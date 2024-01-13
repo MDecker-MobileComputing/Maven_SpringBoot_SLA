@@ -29,7 +29,7 @@ public class ThymeleafViewController {
     }
 
 
-    @GetMapping("/sla/{slaWert}")
+    @GetMapping("/sla/{slaWertProzent}")
     public String slaWertUmrechnen(@PathVariable String slaWertProzent,
                                    Model model) {
 
