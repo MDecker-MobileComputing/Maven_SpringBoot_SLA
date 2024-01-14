@@ -12,6 +12,10 @@ Beispiel-URL für SLA-Wert von 99,9 %: http://localhost:8080/sla/99.9
 
 <br>
 
+![Screenshot](screenshot_1.png)
+
+<br>
+
 ----
 
 ## License ##

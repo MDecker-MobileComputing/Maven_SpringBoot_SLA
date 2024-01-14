@@ -1,6 +1,7 @@
 package de.eldecker.dhbw.spring.sla.thymeleaf;
 
 import de.eldecker.dhbw.spring.sla.logik.SLARechner;
+import de.eldecker.dhbw.spring.sla.model.Ausfallzeiten;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
