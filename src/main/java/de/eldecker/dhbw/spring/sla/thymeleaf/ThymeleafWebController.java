@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Controller für Thymeleaf-Templates.
  */
 @Controller
-public class ThymeleafViewController {
+public class ThymeleafWebController {
 
     /** Bean mit Business-Logik für SLA-Berechnung.  */
     private SLARechner _slaRechner;
@@ -23,7 +23,7 @@ public class ThymeleafViewController {
      * Konstruktor für Dependency Injection.
      */
     @Autowired
-    public ThymeleafViewController(SLARechner slaRechner) {
+    public ThymeleafWebController(SLARechner slaRechner) {
 
         _slaRechner = slaRechner;
     }
