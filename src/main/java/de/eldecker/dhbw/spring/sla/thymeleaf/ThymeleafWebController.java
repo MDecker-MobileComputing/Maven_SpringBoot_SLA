@@ -2,6 +2,9 @@ package de.eldecker.dhbw.spring.sla.thymeleaf;
 
 import de.eldecker.dhbw.spring.sla.logik.SLARechner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @Controller
 public class ThymeleafWebController {
+
+    private Logger LOG = LoggerFactory.getLogger( ThymeleafWebController.class );
 
     /** Bean mit Business-Logik für SLA-Berechnung.  */
     private SLARechner _slaRechner;
