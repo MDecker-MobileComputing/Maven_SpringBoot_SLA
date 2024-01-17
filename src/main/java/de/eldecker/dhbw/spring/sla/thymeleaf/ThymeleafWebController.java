@@ -39,7 +39,7 @@ public class ThymeleafWebController {
     public String slaWertUmrechnen(@PathVariable String slaWertProzent,
                                    Model model) {
 
-        return "";
+        return "todo";
     }
 
 }
