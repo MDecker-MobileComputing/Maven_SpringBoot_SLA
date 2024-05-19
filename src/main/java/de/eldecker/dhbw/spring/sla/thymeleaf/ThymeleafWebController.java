@@ -38,7 +38,6 @@ public class ThymeleafWebController {
     @GetMapping("/sla/{slaWertProzent}")
     public String slaWertUmrechnen(@PathVariable String slaWertProzent,
                                    Model model) {
-
         return "todo";
     }
 
