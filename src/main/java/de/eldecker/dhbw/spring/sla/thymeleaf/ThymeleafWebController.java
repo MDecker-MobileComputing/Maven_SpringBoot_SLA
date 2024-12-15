@@ -35,10 +35,49 @@ public class ThymeleafWebController {
     }
 
 
+    /**
+     * Seite mit Ausfallzeiten für bestimmten SLA-Wert anzeigen.
+     * 
+     * @param slaWertProzent Prozent-Wert für SLA
+     * 
+     * @param model Objekt um Werte für Platzhalter in Template zu setzen
+     * 
+     * @return Template-Datei 
+     */
     @GetMapping("/sla/{slaWertProzent}")
     public String slaWertUmrechnen( @PathVariable String slaWertProzent,
                                     Model model ) {
-        return "todo";
+    	
+        LOG.info( "Pfad /sla aufgerufen mit Pfadparademeter \"{}\".", slaWertProzent );
+                  
+        try {
+        	
+            double slaDouble = Double.parseDouble( slaWertProzent );
+            
+            Ausfallzeiten ausfallzeiten = _slaRechner.berechneAusfallzeiten( slaDouble ); 
+                        
+            LOG.info( "Ausfallzeilen für SLA=\"%s\": " + ausfallzeiten, slaWertProzent );
+                     
+            model.addAttribute( "slaProzentWert"    , slaDouble );
+            model.addAttribute( "maxAusfallProJahr" , ausfallzeiten.ausfallzeitProJahr() );
+                               
+            model.addAttribute( "maxAusfallProWoche", ausfallzeiten.ausfallzeitProWoche() );
+                               
+            model.addAttribute( "maxAusfallProTag"  , ausfallzeiten.ausfallzeitProTag() );
+                               
+            return "ergebnis"; // template "ergebnis.html"
+        }
+        catch ( Exception ex ) {
+        	
+            final String fehlerText =
+                  String.format( "Fehler für SLA-Wert \"%s\": " + ex,  slaWertProzent );
+                               
+            LOG.error( fehlerText, ex );
+
+            model.addAttribute( "fehlertext", fehlerText );
+
+            return "fehler"; // template "fehler.html"
+        }
     }
 
 }
