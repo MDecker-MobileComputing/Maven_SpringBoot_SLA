@@ -12,9 +12,9 @@ public class SLAException extends Exception {
      *
      * @param beschreibung Beschreibung, was genau schief genangen ist.
      */
-    public SLAException(String beschreibung) {
+    public SLAException( String beschreibung ) {
 
-        super(beschreibung);
+        super( beschreibung );
     }
     
 }

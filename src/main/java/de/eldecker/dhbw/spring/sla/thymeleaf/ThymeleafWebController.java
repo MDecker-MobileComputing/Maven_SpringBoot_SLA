@@ -29,15 +29,15 @@ public class ThymeleafWebController {
      * Konstruktor für Dependency Injection.
      */
     @Autowired
-    public ThymeleafWebController(SLARechner slaRechner) {
+    public ThymeleafWebController( SLARechner slaRechner ) {
 
         _slaRechner = slaRechner;
     }
 
 
     @GetMapping("/sla/{slaWertProzent}")
-    public String slaWertUmrechnen(@PathVariable String slaWertProzent,
-                                   Model model) {
+    public String slaWertUmrechnen( @PathVariable String slaWertProzent,
+                                    Model model ) {
         return "todo";
     }
 

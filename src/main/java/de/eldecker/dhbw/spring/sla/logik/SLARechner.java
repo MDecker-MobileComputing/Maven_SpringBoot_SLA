@@ -27,9 +27,9 @@ public class SLARechner {
      * @throws SLAException wenn der übergebene SLA-Wert nicht zwischen 0.0 
      *                      und 100.0 liegt
      */    
-    public Ausfallzeiten berechneAusfallzeiten(double slaProzentWert) throws SLAException {
+    public Ausfallzeiten berechneAusfallzeiten( double slaProzentWert ) throws SLAException {
     
-        final int maxSekundenAusfallzeitProJahr = slaProzentZuSekunden(slaProzentWert);
+        final int maxSekundenAusfallzeitProJahr = slaProzentZuSekunden( slaProzentWert );
         
         final int maxSekundenAusfallProTag   = maxSekundenAusfallzeitProJahr / 365;                 
         final int maxSekundenAusfallProWoche = maxSekundenAusfallProTag      * 7; 
@@ -57,17 +57,17 @@ public class SLARechner {
      * @throws SLAException wenn der übergebene SLA-Wert nicht zwischen 0.0 und
      *                      100.0 liegt
      */
-    public int slaProzentZuSekunden(double slaProzentWert) throws SLAException {
+    public int slaProzentZuSekunden( double slaProzentWert ) throws SLAException {
 
-        if (slaProzentWert < 0.0 || slaProzentWert > 100.0) {
+        if ( slaProzentWert < 0.0 || slaProzentWert > 100.0 ) {
 
-            throw new SLAException("Ungültiger SLA-Wert " + slaProzentWert +
-                                   " (muss zwischen 0.0 und 100.0 liegen)" );
+            throw new SLAException( "Ungültiger SLA-Wert " + slaProzentWert +
+                                    " (muss zwischen 0.0 und 100.0 liegen)" );
         }
 
         final double ausfallzeitErlaubtProzent = 100.0 - slaProzentWert;
 
-        return (int) (ausfallzeitErlaubtProzent * SEKUNDEN_PRO_JAHR / 100.0);
+        return (int) ( ausfallzeitErlaubtProzent * SEKUNDEN_PRO_JAHR / 100.0 );
     }
 
 }

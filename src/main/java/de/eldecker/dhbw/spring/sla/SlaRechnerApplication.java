@@ -16,9 +16,9 @@ public class SlaRechnerApplication {
      *
      * @param args Kommandozeilenargumente, werden an Spring durchgereicht
      */
-	public static void main(String[] args) {
+	public static void main( String[] args ) {
 
-		SpringApplication.run(SlaRechnerApplication.class, args);
+		SpringApplication.run( SlaRechnerApplication.class, args );
 	}
 
 }

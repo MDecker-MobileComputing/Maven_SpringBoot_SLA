@@ -59,12 +59,12 @@ public record Dauer( int wochen,
      *         
      * @throws SLAException {@code sekunden} für mehr als ein (Standard)-Jahr
      */    
-    public static Dauer sekundenZuDauer(int sekunden) throws SLAException {
+    public static Dauer sekundenZuDauer( int sekunden ) throws SLAException {
         
-        if (sekunden > SEKUNDEN_PRO_JAHR) {
+        if ( sekunden > SEKUNDEN_PRO_JAHR ) {
             
             throw new SLAException(
-                        "Dauer von mehr als einem Jahr nicht erlaubt: " + sekunden + "s");
+                        "Dauer von mehr als einem Jahr nicht erlaubt: " + sekunden + "s" );
         }
 
         final int anzahlWochen  = sekunden / SEKUNDEN_PRO_WOCHE;
