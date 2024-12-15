@@ -59,18 +59,16 @@ public class ThymeleafWebController {
             LOG.info( "Ausfallzeilen für SLA=\"%s\": " + ausfallzeiten, slaWertProzent );
                      
             model.addAttribute( "slaProzentWert"    , slaDouble );
-            model.addAttribute( "maxAusfallProJahr" , ausfallzeiten.ausfallzeitProJahr() );
-                               
-            model.addAttribute( "maxAusfallProWoche", ausfallzeiten.ausfallzeitProWoche() );
-                               
-            model.addAttribute( "maxAusfallProTag"  , ausfallzeiten.ausfallzeitProTag() );
+            model.addAttribute( "maxAusfallProJahr" , ausfallzeiten.ausfallzeitProJahr()  );                               
+            model.addAttribute( "maxAusfallProWoche", ausfallzeiten.ausfallzeitProWoche() );                               
+            model.addAttribute( "maxAusfallProTag"  , ausfallzeiten.ausfallzeitProTag()   );
                                
             return "ergebnis"; // template "ergebnis.html"
         }
         catch ( Exception ex ) {
         	
             final String fehlerText =
-                  String.format( "Fehler für SLA-Wert \"%s\": " + ex,  slaWertProzent );
+                      String.format( "Fehler für SLA-Wert \"%s\": " + ex, slaWertProzent );
                                
             LOG.error( fehlerText, ex );
 
