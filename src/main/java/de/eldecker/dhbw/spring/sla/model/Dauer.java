@@ -20,7 +20,8 @@ public record Dauer( int wochen,
                      int stunden,
                      int minuten,
                      int sekunden ) {
-          
+
+    
     /**
      * Liefer gut lesbare String-Repräsentation der Dauer zurück.
      * Die Einheiten sind je nach Wert im Singular oder Plural
@@ -85,5 +86,6 @@ public record Dauer( int wochen,
                           anzahlMinuten,
                           restSekunden4 
                         );
-    }    
+    }
+
 }

@@ -10,7 +10,7 @@ public class SLAException extends Exception {
     /**
      * Erzeugt eine neue SLAException mit der übergebenen Beschreibung.
      *
-     * @param beschreibung Beschreibung, was genau schief genangen ist.
+     * @param beschreibung Beschreibung, was genau schief gegangen ist.
      */
     public SLAException( String beschreibung ) {
 
